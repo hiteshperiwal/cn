@@ -29,7 +29,7 @@ int main()
 
         printf("\nEnter a message ");
         scanf("%s", str);
-        printf("\n enter winfow size");
+        printf("\n enter window size");
         scanf("%d", &w);
         j = 0;
         count = 0;

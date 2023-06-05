@@ -28,7 +28,7 @@ int main()
 
             memset(str, 0x0, 512);
             recv(nsd, str, 512, 0);
-            prinf("data received");
+            printf("data received");
             puts(str);
             send(nsd, str, strlen(ack) + 1, 0);
         } while (strcmp(str, "stop"));

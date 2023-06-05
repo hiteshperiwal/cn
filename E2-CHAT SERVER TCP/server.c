@@ -23,14 +23,14 @@ int main()
     {
         nsd = accept(sd, (struct sockaddr *)&client, &clen);
 
-        strepy(reply "welcome to chat server");
+        strcpy(reply "welcome to chat server");
         send(nsd, reply, strlen(reply) + 1, 0);
         do
         {
 
             memset(str, 0x0, 512);
             recv(nsd, str, 512, 0);
-            printf("\n Mesaage received:%s", str);
+            printf("\n Message received:%s", str);
             printf("\n enter reply");
             scanf("%s", reply);
             send(nsd, reply, strlen(reply) + 1, 0);
