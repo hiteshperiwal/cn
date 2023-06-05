@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <fentl.h>
+#include <fcntl.h>
 #include <unistd.h>
 
 void main()
@@ -10,7 +10,7 @@ void main()
 
         int fd1, n, fd2[2], pid,
 
-        fd1 = open(" a txt", O_RDONLY, 0764), // a.txt is an existing file
+        fd1 = open("a.txt", O_RDONLY, 0764), // a.txt is an existing file
         n = read(fd1, si, sizeof(s1)),
 
         pipe(fd2)
