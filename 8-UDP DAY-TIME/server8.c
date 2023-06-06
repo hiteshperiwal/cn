@@ -13,21 +13,21 @@ int main()
 	struct  sockaddr_in client,server;
 	time_t ti;
 	char * res;
-        int sd,nsd,clen=sizeof(client);
+        int sd,nsd;
         char str[512],msg1[512]="invalid";
         bzero((char*)&server,sizeof(server));
         server.sin_family=AF_INET;
         server.sin_port=htons(SERVER_PORT);
         server.sin_addr.s_addr=inet_addr(SERVER_IP);
-        sd=socket(AF_INET,SOCK_STREAM,0);
+        sd=socket(AF_INET,SOCK_DGRAM,0);
         bind(sd,(struct sockaddr*)&server,sizeof(server));
-	listen(sd,5);
+        int clen=sizeof(client);
 	while(1)
 	{
-	sd=accept(sd,(struct sockaddr*)&client,&clen);
         do{
         memset(str,0x0,512);
 	recvfrom(sd,str,512,0,(struct sockaddr*)&client,&clen);
+	printf("%s",str);
 	if(!strcmp(str,"time"))
 	{
         ti=time(NULL);
@@ -43,4 +43,3 @@ int main()
 }
 return 0;
 }
-
