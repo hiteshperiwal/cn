@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<sys/socket.h>
+#include<unistd.h>
 #include<sys/types.h>
 #include<netinet/in.h>
 #include<arpa/inet.h>
@@ -10,7 +11,7 @@
 #define SERVER_PORT 5670
 int main()
 {
-	int sd;
+	int sd,slen;
 	struct  sockaddr_in client,server;
 	char str[512],msg[512];
 	bzero((char*)&client,sizeof(client));
@@ -21,15 +22,14 @@ int main()
 	server.sin_family=AF_INET;
 	server.sin_port=htons(SERVER_PORT);
 	server.sin_addr.s_addr=inet_addr(SERVER_IP);
-	sd=socket(AF_INET,SOCK_STREAM,0);
-	bind(sd,(struct sockaddr*)&client,sizeof(client));
+	sd=socket(AF_INET,SOCK_DGRAM,0);
+	slen=sizeof(server);
 	do{
-	connect(sd,(struct sockaddr*)&server,sizeof(server));
 	printf("\nEnter a message to send to server:");
 	scanf("%s",str);
-	send(sd,str,strlen(str)+1,0);
+	sendto(sd,str,strlen(str)+1,0,(struct sockaddr*)&server,slen);
 	memset(msg,0x0,512);
-	recv(sd,msg,512,0);
+	recvfrom(sd,msg,512,0,(struct sockaddr*)&server,&slen);
         printf("The reply from server is %s",msg);
 	}
 	while(strcmp(str,"stop"));
