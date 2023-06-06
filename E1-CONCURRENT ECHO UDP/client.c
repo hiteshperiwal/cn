@@ -1,3 +1,4 @@
+//concurrent mai 2 client hota hai toh same ccopy past krlena and bas IP,PORT client ka change kr lena
 #include <stdio.h>
 #include <string.h>
 #include <sys/socket.h>
