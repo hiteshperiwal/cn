@@ -28,7 +28,7 @@ int main()
     {
 
         printf("\nEnter a message ");
-        scanf("%s", str);
+        scanf("%s", &str);
         printf("\n enter window size");
         scanf("%d", &w);
         j = 0;
@@ -45,7 +45,7 @@ int main()
                 buff[j] = '\0';
                 send(sd, buff, strlen(buff) + 1, 0);
                 memset(ack, 0x0, 512);
-                recv(sd, ack .512, 0);
+                recv(sd, ack ,512, 0);
                 printf("%s%d\n", ack, count++);
                 j = 0;
             }
