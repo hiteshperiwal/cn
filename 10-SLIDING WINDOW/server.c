@@ -30,7 +30,7 @@ int main()
             recv(nsd, str, 512, 0);
             printf("data received");
             puts(str);
-            send(nsd, str, strlen(ack) + 1, 0);
+            send(nsd, ack, strlen(ack) + 1, 0);
         } while (strcmp(str, "stop"));
 
         close(nsd);
