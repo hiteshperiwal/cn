@@ -26,6 +26,7 @@ int main()
     connect(sd, (struct sockaddr *)&server, sizeof(server));
     memset(str1, 0x0, 512, 0);
     recv(sd, str1, 512, 0);
+    printf("\n%s\n",str1);
     do
     {
 
@@ -34,7 +35,7 @@ int main()
         send(sd, str, strlen(str) + 1, 0);
         memset(str1, 0x0, 512);
         recv(sd, str1, 512, 0);
-        printf("The echoed message is %s", str1);
+        printf("message from server is %s \n", str1);
     } while (strcmp(str, "stop"));
     close(sd);
 }
