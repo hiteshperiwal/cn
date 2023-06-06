@@ -17,11 +17,11 @@ int main()
     server.sin_port = htons(SERVER_PORT);
     server.sin_addr.s_addr = inet_addr(SERVER_IP);
     sd = socket(AF_INET, SOCK_STREAM, 0);
-    bind(sd, (struct sockaddr *)&server, sizeof(server));
+    bind(sd, (struct sockaddr*)&server, sizeof(server));
     listen(sd, 5);
     while (1)
     {
-        nsd = accept(sd, (struct sockaddr *)&client, &clen);
+        nsd = accept(sd, (struct sockaddr*)&client, &clen);
 
         strcpy(reply "welcome to chat server");
         send(nsd, reply, strlen(reply) + 1, 0);
